@@ -91,7 +91,7 @@ public class philosopher  extends Thread implements Runnable
 				
 				
 			
-			if (statusNumber == 1) statusNumber += 2;//changes the status number in the philosopher class
+			if (statusNumber == 1) statusNumber += 2;
 			else if (statusNumber == 3 && tries < 6) tries++;
 			else
 				statusNumber+=1;
@@ -105,13 +105,13 @@ public class philosopher  extends Thread implements Runnable
 			     break;
 			}
 			
-		}//end try			
+		}			
 		catch (InterruptedException e) {System.out.println("exception");}
-	}//end while
+	}
 	
 		update();
 
-}//end run
+}
 	
 	
 	public void draw(Graphics page)
