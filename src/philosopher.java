@@ -1,11 +1,7 @@
 import java.awt.*;
 
-
-
-
 public class philosopher  extends Thread implements Runnable 
 {
-
 	Color faceColor = Color.GRAY;
 	Color noseColor = Color.BLACK;
 	Color eyeColor = Color.blue;
@@ -16,7 +12,7 @@ public class philosopher  extends Thread implements Runnable
 	int available;
 	chopstick chopstick = new chopstick();
 	
-    int statusNumber = 0;
+	int statusNumber = 0;
 	int SIZE = 40;
 	private Point location;
 	private String status = "THINK";
@@ -42,7 +38,6 @@ public class philosopher  extends Thread implements Runnable
 	
 	public void update()
 	{
-
 		paint.repaint();		
 	}
 	
@@ -52,11 +47,9 @@ public class philosopher  extends Thread implements Runnable
 		while (true)
 		{
 			try
-				{
-				double wait = (Math.random() * 8000) + 3000;	
-				
-				Thread.sleep((long) wait);					
-				
+			{
+				double wait = (Math.random() * 8000) + 3000;
+				Thread.sleep((long) wait);	
 				if (statusNumber != 0 )					
 				{				
 					if (left.pickUp(id) || left.owner == id) 
@@ -64,32 +57,27 @@ public class philosopher  extends Thread implements Runnable
 						System.out.println("in left");
 						left.available=0;
 					
-					if (right.pickUp(id) || right.owner == id) 
-						{
-						right.available=0;
-
-						
-							System.out.println("eating" + id);
-							statusNumber = 2;
-							update();
-							Thread.sleep((long) wait);
-							update();
-							left.putDown();
-							right.putDown();
-							statusNumber = -1;
-													
-						
-					}
-						}
-						else
-						{
+						if (right.pickUp(id) || right.owner == id) 
+							{
+								right.available=0;
+								System.out.println("eating" + id);
+								statusNumber = 2;
+								update();
+								Thread.sleep((long) wait);
+								update();
+								left.putDown();
+								right.putDown();
+								statusNumber = -1;
+														
 							
-							Thread.sleep((long) wait);
+							}
 						}
+					else
+					{
+							
+						Thread.sleep((long) wait);
 					}
-					
-				
-				
+				}
 			
 			if (statusNumber == 1) statusNumber += 2;
 			else if (statusNumber == 3 && tries < 6) tries++;
@@ -102,20 +90,19 @@ public class philosopher  extends Thread implements Runnable
 			{ 
 				left.putDown();
 				right.putDown(); 
-			     break;
+				break;
 			}
 			
-		}			
-		catch (InterruptedException e) {System.out.println("exception");}
-	}
+			}			
+			catch (InterruptedException e) {System.out.println("exception");}
+		}
 	
 		update();
-
-}
+	}
 	
 	
 	public void draw(Graphics page)
-	   {  		
+	{  		
 		switch (statusNumber)
 		{
 			case 0: status = "THINK"; break;
@@ -126,14 +113,14 @@ public class philosopher  extends Thread implements Runnable
 		}
 		
 		   
-		   int       startX, startY, height, width;
-	      Rectangle spot;
+		int       startX, startY, height, width;
+		Rectangle spot;
 	     
 	  
 	// Draw face.
 
-	      page.setColor(faceColor);      
-	      page.fillOval(location.x, location.y, SIZE, SIZE );
+	      	page.setColor(faceColor);      
+	      	page.fillOval(location.x, location.y, SIZE, SIZE );
 
 	// Draw eyes.
 
